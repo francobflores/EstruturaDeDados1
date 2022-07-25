@@ -11,7 +11,7 @@ No *criaNo(int valor){
 	No*novo;
 	novo = (No*)malloc(sizeof(No));
 	if(novo == NULL){
-		printf("ERRO: problemas com alocação de memoria.\n");
+		printf("ERRO: memory allocation problems.\n");
 		exit (1);
 	}
 	novo->chave = valor;
@@ -19,8 +19,39 @@ No *criaNo(int valor){
 	return novo;
 }
 
+No *insereInicio(No *L, int valor){
+	No *novo = criaNo(valor);
+	novo->prox = L;
+	L = novo;
+	return L;
+}
+
+
+void imprime(No *L){
+	No *aux = L;
+	while(aux != NULL){
+		printf("%d ",aux->chave);
+		aux = aux->prox;
+	}
+	printf("\n");
+}
+
+
 int main(){
+    
+    No *L = NULL;
+
+    L = insereInicio(L, 8);
+    L = insereInicio(L, 8);
+    L = insereInicio(L, 8);
+    L = insereInicio(L, 8);
+    L = insereInicio(L, 7);
+
+    imprime(L);
+
     printf("rodou!\n");
+    
+
     return 0;
 
 }
