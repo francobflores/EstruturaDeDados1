@@ -40,6 +40,67 @@ No *insereFinal(No *L, int valor){
 	return L;
 }
 
+No *buscaChave(No *L, int valor){
+	No *aux = L;
+	if(L == NULL)return NULL;
+	else{
+		while(aux != NULL){
+			if(aux->chave == valor) break;
+		}
+		return aux;
+	}
+}
+No *buscaChaveOrd(No *L, int valor){
+	No *aux = L;
+	if(L == NULL)return NULL;
+	else{
+		while(aux != NULL){
+			if(aux->chave <= valor) break;
+		}
+		return aux;
+	}
+}
+No *excluiInicio(No *L){
+	No *aux = L;
+	if(L == NULL)return NULL;
+	else{
+		L = L->prox;
+		free(aux);
+		return L;
+	}
+}
+
+No *excluiFinal(No *L){
+	No *aux = L;
+	No *pred = NULL;
+	if(L == NULL)return NULL;
+	else{
+		while(aux->prox != NULL){
+			pred = aux;
+			aux = aux->prox;
+		}
+		if(pred == NULL) L = NULL;
+		else pred->prox = NULL;
+		free(aux);
+		return L;
+	}
+}
+No *excluiChave(No *L, int valor){
+	No *aux = L;
+	No *pred = NULL;
+	if(L == NULL)return NULL;
+	else{
+		while(aux != NULL && valor != aux->chave){
+			pred = aux;
+			aux = aux->prox;
+		}
+		if(pred == NULL)L = aux->prox;
+		else pred->prox = aux->prox;
+		free(aux);
+		return L;
+	}
+}
+
 void imprime(No *L){
 	No *aux = L;
 	while(aux != NULL){
@@ -60,9 +121,17 @@ int main(){
     L = insereFinal(L, 7);
 	L = insereFinal(L, 8);
 	L = insereFinal(L, 9);
+	imprime(L);
+	L = excluiChave(L,8);
 
     imprime(L);
-
+/*	
+	L = excluiInicio(L);
+	
+	imprime(L);
+	
+	L = excluiFinal(L);
+	imprime(L);*/
     printf("rodou!\n");
     
 
