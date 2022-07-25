@@ -26,6 +26,19 @@ No *insereInicio(No *L, int valor){
 	return L;
 }
 
+No *insereFinal(No *L, int valor){
+	No *novo = criaNo(valor);
+	No *aux = L;
+	if(aux == NULL){
+		L = novo;
+	}else{
+		while(aux->prox != NULL){
+			aux = aux->prox;
+		}
+		aux->prox = novo;
+		}
+	return L;
+}
 
 void imprime(No *L){
 	No *aux = L;
@@ -37,15 +50,16 @@ void imprime(No *L){
 }
 
 
+
+
 int main(){
     
     No *L = NULL;
 
-    L = insereInicio(L, 8);
-    L = insereInicio(L, 8);
-    L = insereInicio(L, 8);
-    L = insereInicio(L, 8);
-    L = insereInicio(L, 7);
+   
+    L = insereFinal(L, 7);
+	L = insereFinal(L, 8);
+	L = insereFinal(L, 9);
 
     imprime(L);
 
