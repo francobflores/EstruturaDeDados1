@@ -101,6 +101,42 @@ No *excluiChave(No *L, int valor){
 	}
 }
 
+No *insereOrd(No *L, int valor){
+	No *novo =criaNo(valor);
+	No *aux = L;
+	No *pred = NULL;
+	if(L == NULL) L = novo;
+	else{
+		while(aux != NULL && valor > aux->chave){
+			pred = aux;
+			aux= aux->prox;
+		}
+		if(pred == NULL){
+			novo->prox = aux;
+			L = novo;
+		}
+		else{
+			novo->prox = aux;
+			pred->prox = novo;
+		}
+	}
+	return L;
+}
+
+No *excluiChaveOrd(No *L, int valor){
+	No *aux = L;
+	No *pred =NULL;
+	if(L == NULL)return NULL;
+	else{
+		while(aux != NULL && aux->chave == valor){
+			if(pred == NULL)L = aux->prox;
+			else pred->prox = aux->prox;
+			free(aux);
+		}
+		return L;
+	}
+}
+
 void imprime(No *L){
 	No *aux = L;
 	while(aux != NULL){
@@ -125,6 +161,12 @@ int main(){
 	L = excluiChave(L,8);
 
     imprime(L);
+	L = insereOrd(L,5);
+	L = insereOrd(L,7);
+	L = insereOrd(L,3);
+	L = insereOrd(L,15); 
+
+	imprime(L);
 /*	
 	L = excluiInicio(L);
 	
