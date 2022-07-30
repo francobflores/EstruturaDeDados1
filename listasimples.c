@@ -136,6 +136,19 @@ No *excluiChaveOrd(No *L, int valor){
 		return L;
 	}
 }
+No *buscaListaOrd( No *L, int valor, No **pred){
+	No * aux =L;
+	(*pred = NULL);
+	if (L ==NULL)return NULL;
+	else{
+		while(aux != NULL){
+			if(valor<= aux->chave)break;
+			(*pred)=aux;
+			aux = aux->prox;
+		}
+		return aux;
+	}
+}
 
 void imprime(No *L){
 	No *aux = L;
