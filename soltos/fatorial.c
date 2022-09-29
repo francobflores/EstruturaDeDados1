@@ -20,4 +20,15 @@ int main(void)
 
 	printf("Fatorial: %d\n", f);
 
+	//calculo do fatorial usando for
+
+	int k = 1;
+
+	for(int j = 1; j <= n; j++)
+	{	
+		k*=j;
+	}
+
+	printf("Fatorial: %d\n",k);
+
 }
